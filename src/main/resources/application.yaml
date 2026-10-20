@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: temp-mail
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/temp_mail?options=-c%20TimeZone=Asia/Kolkata
+    username: tempmail
+    password: 12345678
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+app:
+  mail-domain: ${MAIL_DOMAIN:example.test}
+  inbox:
+    default-ttl-minutes: 10
