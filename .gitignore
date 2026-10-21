@@ -39,7 +39,6 @@ out/
 ### Kotlin ###
 .kotlin
 
-.env
 /build/
 /.gradle/
 .idea/

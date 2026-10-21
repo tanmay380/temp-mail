@@ -2,10 +2,14 @@ spring:
   application:
     name: temp-mail
 
+  # Shares the git-ignored .env with compose.yaml, so the password lives in one place.
+  config:
+    import: optional:file:.env[.properties]
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/temp_mail?options=-c%20TimeZone=Asia/Kolkata
-    username: tempmail
-    password: 12345678
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:tempmail}
+    username: ${DB_USER:tempmail}
+    password: ${POSTGRES_PASSWORD}
 
   jpa:
     hibernate:
@@ -28,3 +32,8 @@ app:
   mail-domain: ${MAIL_DOMAIN:example.test}
   inbox:
     default-ttl-minutes: 10
+    max-messages: 50
+  ingest:
+    secret: ${INGEST_SECRET}
+    max-message-bytes: 1048576
+
